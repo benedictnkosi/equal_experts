@@ -1,18 +1,19 @@
 package stepDefinition;
 
-import com.equalexperts.pages.BookingForm;
-import cucumber.TestContext;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import com.equalexperts.managers.PageObjectManager;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
+import com.equalexperts.pages.BookingForm;
 import com.equalexperts.utils.ConfigFileReader;
-import static org.junit.Assert.*;
+import cucumber.TestContext;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 
 import java.time.LocalDateTime;
+
+import static org.junit.Assert.*;
+
 
 public class Booking_form_steps {
 

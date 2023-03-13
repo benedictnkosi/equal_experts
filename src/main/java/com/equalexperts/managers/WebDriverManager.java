@@ -2,11 +2,11 @@ package com.equalexperts.managers;
 
 import com.equalexperts.enums.DriverType;
 import com.equalexperts.enums.EnvironmentType;
+import com.equalexperts.utils.ConfigFileReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import com.equalexperts.utils.ConfigFileReader;
 
 import java.io.File;
 import java.net.URISyntaxException;

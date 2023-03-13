@@ -1,6 +1,6 @@
 package com.equalexperts.utils;
 
-import org.apache.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
@@ -9,6 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.logging.Logger;
+
 
 public class WebActions {
     WebDriver driver;
@@ -24,7 +28,7 @@ public class WebActions {
      * @param  text String of text to input
      */
     public void populateInputField(By element, String text) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.presenceOfElementLocated(element)).sendKeys(text);
         log.info("field populated : " + element.toString());
     }
@@ -35,7 +39,7 @@ public class WebActions {
      * @param  value String of the visible text
      */
     public void selectDropdownValueByVisibleText(By element, String value) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         Select drpDepositPaid = new Select(wait.until(ExpectedConditions.presenceOfElementLocated(element)));
         drpDepositPaid.selectByVisibleText(value);
         log.info("Dropdown value selected by text : " + value);
@@ -56,7 +60,7 @@ public class WebActions {
      * @param  element  an element By object
      */
     public void clickButton(By element) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         log.info("element clicked : " + element.toString());
     }
@@ -67,7 +71,7 @@ public class WebActions {
      * @return integer value
      */
     public int getNumberOfElements(By element) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
         return driver.findElements(element).size();
     }
@@ -79,7 +83,7 @@ public class WebActions {
      */
     public boolean isElementOnPage(By element) {
         try{
-            WebDriverWait wait = new WebDriverWait(driver, 10);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.presenceOfElementLocated(element));
             return true;
         }catch (TimeoutException ex ){
@@ -91,8 +95,9 @@ public class WebActions {
      * waits for all jquery calls to be complete. times out after 60 seconds
      */
     public void waitForJQuery() {
-        (new WebDriverWait(driver, 60)).until((ExpectedCondition<Boolean>) d -> {
+        (new WebDriverWait(driver, Duration.ofSeconds(60))).until((ExpectedCondition<Boolean>) d -> {
             JavascriptExecutor js = (JavascriptExecutor) d;
+            assert js != null;
             return (Boolean) js.executeScript("return !!window.jQuery && window.jQuery.active == 0");
         });
     }
