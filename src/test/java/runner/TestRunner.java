@@ -1,26 +1,16 @@
 package runner;
 
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
+import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 
-import java.net.URL;
-
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        tags = "@equal_experts_scenario",
-        features = "src/test/resources/Feature",
-        glue={"stepDefinition"},
-        plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"},
-        monochrome = true
-)
-
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("io/github/bonigarcia")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "io.github.bonigarcia")
 public class TestRunner {
-    @AfterClass
-    public static void writeExtentReport() {
-        URL res = TestRunner.class.getClassLoader().getResource("extent-config.xml");
 
-    }
 }

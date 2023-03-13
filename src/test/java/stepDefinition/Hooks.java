@@ -1,11 +1,10 @@
 package stepDefinition;
 
 
-import com.cucumber.listener.Reporter;
 import com.google.common.io.Files;
 import cucumber.TestContext;
-import io.cucumber.java.*;
-
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -37,8 +36,8 @@ public class Hooks {
                 Files.copy(sourcePath, destinationPath);
 
                 //This attach the specified screenshot to the test
-                Reporter.addScreenCaptureFromPath(destinationPath.toString());
-            } catch (IOException e) {
+                //Reporter.addScreenCaptureFromPath(destinationPath.toString());
+            } catch (IOException ignored) {
             }
        // }
     }

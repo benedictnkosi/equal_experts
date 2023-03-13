@@ -1,8 +1,0 @@
-com\equalexperts\managers\WebDriverManager.class
-com\equalexperts\enums\DriverType.class
-com\equalexperts\enums\EnvironmentType.class
-com\equalexperts\managers\PageObjectManager.class
-com\equalexperts\pages\BookingForm.class
-com\equalexperts\utils\ConfigFileReader.class
-com\equalexperts\managers\WebDriverManager$1.class
-com\equalexperts\utils\WebActions.class
