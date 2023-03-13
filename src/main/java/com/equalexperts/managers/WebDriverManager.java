@@ -12,7 +12,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class WebDriverManager {
 
@@ -36,12 +36,8 @@ public class WebDriverManager {
 
     private WebDriver createDriver() {
         switch (environmentType) {
-            case LOCAL:
-                driver = createLocalDriver();
-                break;
-            case REMOTE:
-                driver = createRemoteDriver();
-                break;
+            case LOCAL -> driver = createLocalDriver();
+            case REMOTE -> driver = createRemoteDriver();
         }
         return driver;
     }
@@ -67,22 +63,20 @@ public class WebDriverManager {
 
     private WebDriver createLocalDriver() {
         switch (driverType) {
-            case FIREFOX:
+            case FIREFOX -> {
                 System.setProperty(FIREFOX_DRIVER_PROPERTY, getDriverAbsolutePath("geckodriver.exe"));
                 driver = new FirefoxDriver();
-                break;
-            case CHROME:
+            }
+            case CHROME -> {
                 System.setProperty(CHROME_DRIVER_PROPERTY, getDriverAbsolutePath("chromedriver.exe"));
                 driver = new ChromeDriver();
-                break;
-            case INTERNETEXPLORER:
-                driver = new InternetExplorerDriver();
-                break;
+            }
+            case INTERNETEXPLORER -> driver = new InternetExplorerDriver();
         }
 
         if (this.configReader.getBrowserWindowSize()) driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(this.configReader.getImplicitlyWait(), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(this.configReader.getImplicitlyWait()));
 
         return driver;
     }

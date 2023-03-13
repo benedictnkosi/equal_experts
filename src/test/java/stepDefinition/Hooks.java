@@ -1,10 +1,11 @@
 package stepDefinition;
 
+
 import com.cucumber.listener.Reporter;
 import com.google.common.io.Files;
 import cucumber.TestContext;
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
+import io.cucumber.java.*;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
